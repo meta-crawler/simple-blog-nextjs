@@ -1,11 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
 // Components
 import LoadingIndicator from './LoadingIndicator';
 import Pagination from './Pagination';
+import Post from '@/pages/post';
 // Redux
 import { useSelector } from '@/redux/store';
-import { IPost } from '@/@types/blog';
 
 const BlogGallery = () => {
   const { isLoading, posts } = useSelector((store) => store.blog);
@@ -15,8 +13,13 @@ const BlogGallery = () => {
     </div>
   ) : (
     <div className="flex flex-col space-y-9">
-      <div className="flex w-full flex-row items-center justify-between">
-        {posts && posts.map((post) => <div>{post.title}</div>)}
+      <div className="grid grid-cols-3 space-x-3">
+        {posts &&
+          posts.map((post) => (
+            <div className="col-span-1">
+              <Post key={post.id} post={post} />
+            </div>
+          ))}
       </div>
 
       <Pagination />
