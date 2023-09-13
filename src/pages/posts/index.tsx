@@ -26,7 +26,7 @@ export default function Post({ post }: IPostProps) {
           {categories &&
             post.categories &&
             post.categories.map((category) => (
-              <Category category={getCategoryById(category)} />
+              <Category key={category} category={getCategoryById(category)} />
             ))}
         </div>
         <p className="text-sm font-semibold text-gray-600">{post.title}</p>

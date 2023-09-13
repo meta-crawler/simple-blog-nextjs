@@ -12,7 +12,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(getPosts(pagination?.page));
+    dispatch(getPosts({ page: pagination?.page }));
   }, []);
 
   return (

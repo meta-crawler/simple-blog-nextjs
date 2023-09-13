@@ -7,12 +7,14 @@ const Pagination = () => {
 
   const handleClickPrev = () => {
     if (pagination?.page) {
-      dispatch(getPosts(Math.max(pagination.page - 1, 0)));
+      dispatch(getPosts({ page: Math.max(pagination.page - 1, 0) }));
     }
   };
   const handleClickNext = () => {
     if (pagination && pagination.page < pagination.total - 1) {
-      dispatch(getPosts(Math.min(pagination.page + 1, pagination.total - 1)));
+      dispatch(
+        getPosts({ page: Math.min(pagination.page + 1, pagination.total - 1) }),
+      );
     }
   };
 

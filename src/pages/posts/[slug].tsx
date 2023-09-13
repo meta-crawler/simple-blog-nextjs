@@ -51,7 +51,10 @@ export default function DisplayPost() {
                 {categories &&
                   post.categories &&
                   post.categories.map((category) => (
-                    <Category category={getCategoryById(category)} />
+                    <Category
+                      key={category}
+                      category={getCategoryById(category)}
+                    />
                   ))}
               </div>
             </div>

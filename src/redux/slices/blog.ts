@@ -63,12 +63,20 @@ export const {
   getCategoriesSuccess,
 } = slice.actions;
 
-export const getPosts = (page: number = 0) => {
+export const getPosts = ({
+  page = 0,
+  category = null,
+  title = '',
+}: {
+  page: number;
+  category?: number;
+  title?: string;
+}) => {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
       const { data }: AxiosResponse = await axios.get(
-        `/api/posts/?page=${page}`,
+        `/api/posts/?page=${page}&category=${category}&title=${title}`,
       );
       dispatch(getPostsSuccess(data));
     } catch (error) {
