@@ -14,8 +14,12 @@ export default function Post({ post }: IPostProps) {
   };
 
   return (
-    <div className="h-[420px] flex-1 rounded-lg shadow-primary">
-      <img src={post.imageUrl} alt={post.title} className="h-56 rounded-t-lg" />
+    <div className="h-fit flex-1 rounded-lg shadow-primary md:h-[420px]">
+      <img
+        src={post.imageUrl}
+        alt={post.title}
+        className="h-fit rounded-t-lg md:h-56"
+      />
 
       <div className="flex flex-col space-y-3 p-2 lg:p-4">
         <div className="flex w-full flex-row flex-wrap gap-2">
