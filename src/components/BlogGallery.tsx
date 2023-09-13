@@ -16,7 +16,7 @@ const BlogGallery = () => {
   const [search, setSearch] = useState<string>();
 
   const handleClickSearch = () => {
-    let query: { page: number; category: number; title: string } = {
+    const query: { page: number; category: number; title: string } = {
       page: 0,
       category: null,
       title: '',
