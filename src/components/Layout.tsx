@@ -1,15 +1,14 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 type LayoutProps = {
-  children: React.ReactNode
-  title?: string
-}
+  children: React.ReactNode;
+  title?: string;
+};
 
 export default function Layout({
   children,
   title = 'This is the default title',
 }: LayoutProps) {
-
   return (
     <div>
       <Head>
@@ -17,7 +16,8 @@ export default function Layout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {children}
+
+      <main>{children}</main>
     </div>
-  )
+  );
 }

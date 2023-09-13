@@ -1,16 +1,29 @@
-import Layout from '@/components/layout'
+import { useEffect } from 'react';
+// Components
+import Layout from '@/components/Layout';
+import { BlogGallery } from '@/components/BlogGallery';
+// Redux
+import { useDispatch, useSelector } from '@/redux/store';
+import { getCategories, getPosts } from '@/redux/slices/blog';
 
 export default function IndexPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getPosts());
+  }, []);
+
   return (
     <Layout title="Home | Next.js + TypeScript Simple Blog">
-      <main>
-        <div className='flex flex-col items-center justify-center min-h-screen text-center'>
-          <h1 className="text-2xl">Hello Next.js 👋</h1>
-          <p className='mt-2 text-gray-800'>
-            A starter for Next.js, Tailwind CSS, and TypeScript
-          </p>
-        </div>
-      </main>
+      <div className="p-4 lg:p-10">
+        <p className="text-center text-3xl font-bold">From the blog</p>
+        <p className="text-md pt-6 text-center text-gray-600">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam
+        </p>
+      </div>
     </Layout>
-  )
+  );
 }
