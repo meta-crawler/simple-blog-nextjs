@@ -1,32 +1,50 @@
-import React from 'react';
+import { useDispatch, useSelector } from '@/redux/store';
+import { getPosts } from '@/redux/slices/blog';
 
-import Link from 'next/link';
+const Pagination = () => {
+  const dispatch = useDispatch();
+  const { isLoading, pagination } = useSelector((store) => store.blog);
 
-import { convertUrlToLinkHref } from '@/utils/Pagination';
+  const handleClickPrev = () => {
+    if (pagination?.page) {
+      dispatch(getPosts(Math.max(pagination.page - 1, 0)));
+    }
+  };
+  const handleClickNext = () => {
+    if (pagination && pagination.page < pagination.total - 1) {
+      dispatch(getPosts(Math.min(pagination.page + 1, pagination.total - 1)));
+    }
+  };
 
-export type IPaginationProps = {
-  previous?: string;
-  next?: string;
+  return !isLoading && pagination ? (
+    <div className="flex justify-between text-sm">
+      <div
+        role="button"
+        className={`flex w-fit flex-row items-center justify-center gap-x-2 rounded-lg px-10 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 ${
+          pagination.page
+            ? 'bg-green-400 hover:bg-green-500 focus:ring-green-600'
+            : 'bg-gray-300'
+        }`}
+        onClick={handleClickPrev}
+      >
+        Prev
+      </div>
+
+      <div
+        role="button"
+        className={`flex w-fit flex-row items-center justify-center gap-x-2 rounded-lg px-10 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 ${
+          pagination.page < pagination.total - 1
+            ? 'bg-green-400 hover:bg-green-500 focus:ring-green-600'
+            : 'bg-gray-300'
+        }`}
+        onClick={handleClickNext}
+      >
+        Next
+      </div>
+    </div>
+  ) : (
+    <></>
+  );
 };
 
-const Pagination = (props: IPaginationProps) => (
-  <div className="flex justify-between text-sm">
-    {props.previous && (
-      <div>
-        <Link href={convertUrlToLinkHref(props.previous)} as={props.previous}>
-          <a>Prev</a>
-        </Link>
-      </div>
-    )}
-
-    {props.next && (
-      <div className="ml-auto text-right">
-        <Link href={convertUrlToLinkHref(props.next)} as={props.next}>
-          <a>Next</a>
-        </Link>
-      </div>
-    )}
-  </div>
-);
-
-export { Pagination };
+export default Pagination;

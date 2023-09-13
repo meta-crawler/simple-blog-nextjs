@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { BlogGallery } from '@/components/BlogGallery';
 // Redux
-import { useDispatch, useSelector } from '@/redux/store';
+import { useDispatch } from '@/redux/store';
 import { getCategories, getPosts } from '@/redux/slices/blog';
 
 export default function IndexPage() {
@@ -16,13 +16,15 @@ export default function IndexPage() {
 
   return (
     <Layout title="Home | Next.js + TypeScript Simple Blog">
-      <div className="p-4 lg:p-10">
+      <div className="mx-auto max-w-4xl pt-4 lg:pt-10">
         <p className="text-center text-3xl font-bold">From the blog</p>
-        <p className="text-md pt-6 text-center text-gray-600">
+        <p className="text-md py-6 text-center text-gray-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam
         </p>
+
+        <BlogGallery />
       </div>
     </Layout>
   );

@@ -1,26 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
-
-import { Pagination, IPaginationProps } from '@/components/Pagination';
+// Components
+import LoadingIndicator from './LoadingIndicator';
+import Pagination from './Pagination';
+// Redux
+import { useSelector } from '@/redux/store';
 import { IPost } from '@/@types/blog';
 
-export type IBlogGalleryProps = {
-  posts: IPost[];
-  pagination: IPaginationProps;
-};
-
-const BlogGallery = (props: IBlogGalleryProps) => {
-  const { posts, pagination } = props;
-  return (
-    <>
+const BlogGallery = () => {
+  const { isLoading, posts } = useSelector((store) => store.blog);
+  return isLoading ? (
+    <div className="w-full items-center justify-center py-9">
+      <LoadingIndicator />
+    </div>
+  ) : (
+    <div className="flex flex-col space-y-9">
       <div className="flex w-full flex-row items-center justify-between">
-        {posts.map((post) => (
-          <div>{post.title}</div>
-        ))}
+        {posts && posts.map((post) => <div>{post.title}</div>)}
       </div>
 
-      <Pagination previous={pagination.previous} next={pagination.next} />
-    </>
+      <Pagination />
+    </div>
   );
 };
 

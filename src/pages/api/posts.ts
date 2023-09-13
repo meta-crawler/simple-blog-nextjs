@@ -6,6 +6,7 @@ export default function posts(req: NextApiRequest, res: NextApiResponse) {
     query: { page },
   } = req;
   const postsPerPage = 3;
+  const totalPages = Math.ceil(data.posts.length / postsPerPage);
   const pageNumber: number = JSON.parse(page as string);
 
   res.status(200).json({
@@ -15,7 +16,7 @@ export default function posts(req: NextApiRequest, res: NextApiResponse) {
     ),
     pagination: {
       page: pageNumber,
-      total: data.posts.length,
+      total: totalPages,
     },
   });
 }
