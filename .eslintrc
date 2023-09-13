@@ -1,18 +1,24 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "warnOnUnsupportedTypeScriptVersion": false
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "rules": {
-    "no-console": 1,
-    "prettier/prettier": 2
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "always"]
   },
   "env": {
     "browser": true,
