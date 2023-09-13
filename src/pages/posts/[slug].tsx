@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 // Component
 import Layout from '@/components/Layout';
 import Category from '@/components/Category';
+import { BiArrowBack } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from '@/redux/store';
 import { getCategories, getPostBySlug } from '@/redux/slices/blog';
@@ -35,7 +36,8 @@ export default function DisplayPost() {
             className="text-grey-400 flex w-fit flex-row items-center justify-center gap-x-2 rounded-lg bg-gray-100 px-4 py-2.5 text-center text-sm font-medium hover:bg-gray-200 focus:outline-none"
             onClick={handleClickBack}
           >
-            {'<'}&nbsp;&nbsp;Back
+            <BiArrowBack />
+            &nbsp;&nbsp;Back
           </div>
 
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
